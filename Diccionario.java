@@ -1,9 +1,10 @@
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Diccionario {
-    private Map<Character, List<String>> palabrasPorInicial;
+    private Map<Character, Set<String>> palabrasPorInicial;
 
     public Diccionario() {
         palabrasPorInicial = new HashMap<>();
@@ -12,7 +13,7 @@ public class Diccionario {
     public void agregarPalabra(String palabra) {
         if (palabra.length() > 0) {
             char inicial = palabra.charAt(0);
-            List<String> palabras = palabrasPorInicial.getOrDefault(inicial, new ArrayList<>());
+            Set<String> palabras = palabrasPorInicial.getOrDefault(inicial, new HashSet<>());
             palabras.add(palabra);
             palabrasPorInicial.put(inicial, palabras);
             System.out.println("Palabra agregada correctamente al diccionario.");
@@ -22,7 +23,7 @@ public class Diccionario {
     }
 
     public void mostrarPalabrasPorInicial(char inicial) {
-        List<String> palabras = palabrasPorInicial.get(inicial);
+        Set<String> palabras = palabrasPorInicial.get(inicial);
         if (palabras != null) {
             System.out.println("Palabras con inicial '" + inicial + "':");
             for (String palabra : palabras) {
