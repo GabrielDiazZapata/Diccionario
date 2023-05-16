@@ -12,6 +12,7 @@ public class Diccionario {
 
     public void agregarPalabra(String palabra) {
         if (palabra.length() > 0) {
+            palabra = sanitizarPalabra(palabra);
             char inicial = palabra.charAt(0);
             Set<String> palabras = palabrasPorInicial.getOrDefault(inicial, new HashSet<>());
             palabras.add(palabra);
@@ -33,4 +34,11 @@ public class Diccionario {
             System.out.println("No hay palabras con esa inicial en el diccionario.");
         }
     }
+
+    private String sanitizarPalabra(String palabra) {
+        palabra = palabra.trim(); // Eliminar espacios al inicio y final
+        palabra = palabra.toLowerCase(); // Convertir a minúsculas
+        return palabra;
+    }
 }
+
